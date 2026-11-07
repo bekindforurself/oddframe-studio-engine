@@ -1,0 +1,9 @@
+{
+  "id":"film01-sleep", "composition":"OddFrameSleepFinal01", "source":"src/oddframe/sleep-final01",
+  "frames":1200, "fps":30, "durationSeconds":40, "sourceDimensions":[1080,1920],
+  "localReview":"out/oddframe-sleep-final01/sleep-final-preview.mp4", "reviewDimensions":[540,960],
+  "publication":"User reported the first film published. Do not infer a local native master or real narrator from that statement.",
+  "localAudio":{"script":"scripts/audio-sleep-final01.py","format":"24kHz mono original music/Foley plus silent replaceable narrator slot","narration":"External; historical TTS failures are not a request to retry"},
+  "reuse":["Worker/sleeper artwork","Office, beach, illustrated props","Fixed-length connected arms","Anchored foot routes","Calibrated contact shadows","Approved source rather than scaled review video"],
+  "lessons":["Check entire silhouette through open doors","Sleeping/rising are staged graphical rotations","Keep film-local intersection fixes local","Never present silent placeholders as generated narration"]
+}

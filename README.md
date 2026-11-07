@@ -1,8 +1,11 @@
-# oddframe-studio-engine
-
----
-
 # OddFrame Studio Engine
+
+Current release: **2.1.0** (`version.json`). The production-intelligence API is
+opt-in at `v2_1/index.ts`; existing imports retain their defaults. Start with
+`knowledge/index.json` and `PRODUCTION_21.md` for current workflows. Historical
+foundation/extraction notes below describe earlier preparation, not current
+GitHub publication state. The existing remote is preserved through its history;
+see `knowledge/PUBLISHING.md` for the engine-only release boundary.
 
 Reusable source foundation for future OddFrame animated shorts. Intended private repository: `bekindforurself/oddframe-studio-engine`. No repository has been created, connected, committed, or pushed by this preparation.
 
@@ -25,7 +28,3 @@ engine/
 ```
 
 No new dependency, asset download or film registration is required. Validation is TypeScript only; the example has not been visually reviewed or rendered in this task.
-
-## Repository layout
-
-The engine contents live at this repository root. References to engine/ in the extraction documentation describe the original host project. The original remote README heading is preserved above. The root tsconfig.json is standalone; dependencies are supplied by the consuming project. No dependency packages or film assets are bundled.

@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "remotion": "^4.0.0",
+    "@remotion/cli": "^4.0.0",
+    "@remotion/three": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.170.0",
+    "@react-three/fiber": "^8.17.0",
+    "@react-three/postprocessing": "^2.16.0",
+    "postprocessing": "^6.36.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@types/three": "^0.170.0"
+  },
+  "name": "oddframe-studio-engine",
+  "version": "2.1.0",
+  "private": true,
+  "description": "OddFrame reusable 2.5D cinematic source engine",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "node --test tests/production.test.cjs"
+  }
+}

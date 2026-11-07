@@ -1,0 +1,15 @@
+{
+  "version":"2.1.0",
+  "upgradeScope":"Additive production utilities and proven Engine2.0 preservation; no new film",
+  "checks":{
+    "hostTypeScript":"passed: engine/tsconfig.json includes engine, template and existing film sources",
+    "standaloneTypeScript":"passed: published root tsconfig",
+    "nodeTests":{"passed":3,"coverage":["half-open timing","camera cuts/blends and reverse sampling","render approval/scene contracts/ref validation/fingerprints"]},
+    "pythonTests":{"hostPassed":4,"standalonePassed":3,"standaloneSkipped":1,"skipReason":"Original Film02 audio script intentionally remains in host; extraction parity test runs there","coverage":["sample alignment","deterministic buses","stem sum","unclipped PCM24","non-vocal presets","Film02 kernel parity"]},
+    "hostCompatibility":{"film01Frames":1200,"film02Frames":1470,"deterministic":true,"previousProtectedFilesUnchanged":2906,"intentionalDocumentUpdates":5,"completeFilmRerenders":0},
+    "browserFixture":{"frames":30,"seconds":1,"width":540,"height":960,"actualBuffer":[540,960],"decodePassed":true,"unexpectedBlackFrames":0,"withAudioDecodePassed":true,"videoEssenceUnchangedByMux":true,"aacIntegratedLUFS":-24.85,"aacTruePeakDbTP":-7.0,"purpose":"Technical fixture only, not Film03 or a visual production approval"}
+  },
+  "fixedDuringValidation":"Passive R3F buffer probe originally used a positive callback priority, which disabled automatic drawing. Full decode detected black frames; priority changed to zero and a SHA-bound validation receipt is now required for completed-render reuse.",
+  "performanceClaim":"No full-film speedup or new native-film benchmark claimed. Existing verified Film02 native result remains in film02.json.",
+  "remoteBaseline":"Existing engine-only remote predates the local Engine2.0 work. This release preserves that proven local baseline as well as new2.1 modules, maintaining the existing remote parent/history."
+}

@@ -1,11 +1,13 @@
+import type {IllustrationPerformance} from './performanceTypes';
 import {ease,mix} from '../math';
+import {drawConnectedUpper,drawConnectedForearm} from './connectedArms';
 export type Person='worker'|'sleeper';
 export type Emotion='tired'|'hopeful'|'happy'|'asleep'|'yawn'|'angry'|'confused'|'shocked'|'relaxed';
 export type Gesture='idle'|'desk'|'point'|'pay'|'receive'|'sleep'|'shrug'|'self'|'offer'|'storm'|'walk'|'freeze'|'yawn'|'tap';
 export type P=[number,number];
-export type RigArm={shoulder:P;elbow:P;hand:P;style:'closed'|'open'|'point'};
+export type RigArm={shoulder:P;elbow:P;hand:P;style:'closed'|'open'|'point'|'relaxed'|'spread'|'grip';wristAngle?:number};
 export type HumanRig={left:RigArm;right:RigArm;bob:number;separateLegs?:boolean};
-export type HumanState={id:Person;frame:number;emotion:Emotion;pose:Gesture;fatigue?:number;look?:number;direction?:number;ink?:number;seat?:number;fromPose?:Gesture;poseAge?:number;rig?:HumanRig};
+export type HumanState={id:Person;frame:number;emotion:Emotion;pose:Gesture;fatigue?:number;look?:number;direction?:number;ink?:number;seat?:number;fromPose?:Gesture;poseAge?:number;rig?:HumanRig;armRendering?:'connected';performance?:IllustrationPerformance};
 export const HUMAN_W=700,HUMAN_H=1100,HUMAN_WORLD=3.2,HUMAN_SOLE=1040;
 const C={ink:'#201F23',skin:'#F2C9A5',light:'#FFE0BE',shade:'#D39A79',deep:'#B87964',cream:'#EBDCC1',creamLight:'#FFF0D3',creamShade:'#BBAC99',hair:'#49342B',hairLight:'#77503A',teal:'#5A9388',tealLight:'#8AB5A3',tealShade:'#35646A',trousers:'#354351'};
 type G=CanvasRenderingContext2D;
@@ -77,7 +79,7 @@ function arm(p:Ink,id:Person,pts:P[],pose:Gesture,side:'left'|'right'){
 }
 
 function head(p:Ink,state:HumanState){
- const {id,emotion,frame}=state,g=p.g,turn=state.look??0,tired=state.fatigue??0;
+ const {id,emotion,frame}=state,g=p.g,faceState=state.performance?.face,turn=faceState?.gazeX??state.look??0,tired=state.fatigue??0;
  // Natural ears, jaw, nose and hair replace all earlier geometric mascot silhouettes.
  p.ellipse(237,231,28,43,C.skin,true);p.line('M232 216 Q251 220 239 247',C.deep,.7);
  p.ellipse(447,228,22,36,C.shade,true);
@@ -98,23 +100,29 @@ function head(p:Ink,state:HumanState){
   p.line('M432 191 L436 236',C.ink,1.2);
  }
  g.save();g.translate(347+turn*13,0);g.scale(1-Math.abs(turn)*.035,1);g.translate(-347,0);
- const blink=(frame+(id==='worker'?0:53))%137,closed=emotion==='asleep'||emotion==='relaxed'||(blink>=123&&blink<=128);
+ const blink=(frame+(id==='worker'?0:53))%137,closed=faceState?false:emotion==='asleep'||emotion==='relaxed'||(blink>=123&&blink<=128);
  const yawning=emotion==='yawn',shocked=emotion==='shocked',angry=emotion==='angry';
  for(const [i,x] of [289,387].entries()){
   const y=233,drop=emotion==='tired'?8+tired*8:0;
   let by=192+(angry?(i===0?7:-3):emotion==='confused'?(i===0?-9:8):0);
   if(shocked||emotion==='hopeful')by-=11;
+  if(faceState)by+=faceState.brow+(i===0?-1:1)*faceState.asymmetry;
   p.shape(`M${x-33} ${by+3} Q${x-4} ${by-12} ${x+29} ${by+6} L${x+28} ${by+13} Q${x-2} ${by-3} ${x-33} ${by+10} Z`,C.hair,350,false);
+  g.save();if(faceState){g.translate(x,y);g.scale(1,Math.max(.04,faceState.eyeOpen));g.translate(-x,-y);}
   if(closed||yawning){p.line(`M${x-27} ${y+6} Q${x} ${y+(yawning?19:12)} ${x+26} ${y+3}`,C.ink,1.05);}
   else{
    const eye=p.shape(`M${x-29} ${y-17+drop} Q${x} ${y-35+drop} ${x+27} ${y-14+drop} Q${x+32} ${y+29} ${x} ${y+30} Q${x-31} ${y+27} ${x-29} ${y-17+drop} Z`,'#FFF0D8',x+12);
-   p.clip(eye,()=>{p.ellipse(x+turn*8,y+3,shocked?8:12,shocked?12:19,'#342C2A');p.ellipse(x+turn*8-3,y-5,3,4,'#FFF9E9');});
+   p.clip(eye,()=>{p.ellipse(x+turn*8,y+3+(faceState?.gazeY??0)*10,shocked?8:12,shocked?12:19,'#342C2A');p.ellipse(x+turn*8-3,y-5,3,4,'#FFF9E9');});
    if(emotion==='tired')p.line(`M${x-29} ${y-9+drop} Q${x} ${y-4+drop} ${x+27} ${y-8+drop}`,C.shade,3.4);
   }
+  g.restore();
   if(id==='worker'){p.line(`M${x-22} ${y+39} Q${x} ${y+46+tired*7} ${x+22} ${y+38}`,C.deep,.6);if(tired>.45)p.line(`M${x-15} ${y+49} L${x+16} ${y+53}`,C.deep,.45);}
  }
  p.line('M343 237 Q335 264 347 268 L357 265',C.deep,.65);
- if(yawning){p.ellipse(346,300,23,34,C.ink);p.ellipse(345,321,13,10,'#C77E77');}
+ if(faceState?.mouth==='awe'){p.ellipse(347,304,12,17,C.ink);}
+ else if(faceState?.mouth==='worry'){p.line('M317 314 Q347 293 378 314',C.ink,1.1);}
+ else if(faceState?.mouth==='resolve'){p.line('M319 307 Q348 310 378 303',C.ink,1.1);}
+ else if(yawning){p.ellipse(346,300,23,34,C.ink);p.ellipse(345,321,13,10,'#C77E77');}
  else if(shocked){p.ellipse(347,302,18,23,C.ink);}
  else if(emotion==='happy'||emotion==='hopeful'){
   const m=p.shape('M309 291 Q347 311 391 286 Q380 340 345 332 Q320 327 309 291 Z',C.ink,350,false);p.clip(m,()=>p.shape('M310 291 Q350 308 391 286 L385 304 Q347 320 315 304 Z','#FFF0D8',350,false));
@@ -139,9 +147,10 @@ export function drawHuman(g:G,state:HumanState){
   p.line(`M${foot[0]-27} ${foot[1]+3} Q${foot[0]} ${foot[1]+9} ${foot[0]+36} ${foot[1]+2}`,id==='worker'?'#A27A55':'#F1D7AA',.7);
  }
  g.save();
- const breathe=Math.sin(state.frame*.045)*2.5+(state.rig?.bob??0),hunch=seated*(.045+(state.fatigue??0)*.035)+(state.pose==='storm'?-.035:0);
+ const breathe=Math.sin(state.frame*.045)*2.5+(state.rig?.bob??0),hunch=seated*(.045+(state.fatigue??0)*.035)+(state.pose==='storm'?-.035:0)+(state.performance?.lean??0);
+ if(state.performance)g.translate(state.performance.sway,0);
  g.translate(350,720);g.rotate(hunch);g.translate(-350,-720+breathe);
- if(state.rig){paintUpper(p,id,state.rig.left);paintUpper(p,id,state.rig.right);}
+ if(state.rig){if(state.armRendering==='connected'){drawConnectedUpper(g,id,state.rig.left,p.unit);drawConnectedUpper(g,id,state.rig.right,p.unit);}else{paintUpper(p,id,state.rig.left);paintUpper(p,id,state.rig.right);}}
  const body=p.shape('M274 384 Q345 360 414 388 Q443 438 434 533 L424 709 Q348 738 268 713 L256 519 Q239 433 274 384 Z',id==='worker'?C.cream:C.teal,389);
  p.clip(body,()=>{
   p.shape('M393 378 Q407 490 389 618 L413 720 L448 716 L448 399 Z',id==='worker'?C.creamShade:C.tealShade,350,false);
@@ -149,6 +158,7 @@ export function drawHuman(g:G,state:HumanState){
   p.line('M344 423 Q330 556 343 700',id==='worker'?C.creamShade:C.tealShade,.8);
   p.line('M276 637 Q299 620 314 636 M386 654 Q404 631 423 634',id==='worker'?C.creamShade:C.tealShade,1.1);
   p.line('M278 681 L316 693 M382 700 L415 683',C.ink,.55);
+  if(state.performance?.clothingDetail){p.line('M267 441 Q285 460 294 474 M412 444 Q399 468 399 482 M279 569 Q294 579 307 575 M384 589 Q405 582 426 591',C.creamShade,.7);for(let i=0;i<4;i++)p.ellipse(349,479+i*48,3,3,'#B9A98F');}
  });
  p.shape('M309 327 L381 325 L385 396 Q353 432 310 398 Z',C.shade,369);
  if(id==='worker'){
@@ -168,8 +178,8 @@ export function drawHuman(g:G,state:HumanState){
  g.save();
  g.translate(-22*seated,88*seated);
  const nod=state.emotion==='tired'?Math.max(0,Math.sin(state.frame*.067))*(.09+(state.fatigue??0)*.12):state.emotion==='yawn'?-.08:state.emotion==='angry'?-.045:0;
- g.translate(347,346);g.rotate(nod+(state.look??0)*.022);g.translate(-347,-346);head(p,state);g.restore();
- if(state.rig){paintForearm(p,id,state.rig.left);paintForearm(p,id,state.rig.right);}
+ g.translate(347,346);g.rotate(nod+(state.look??0)*.022+(state.performance?.headTilt??0));g.translate(0,state.performance?.headNod??0);g.translate(-347,-346);head(p,state);g.restore();
+ if(state.rig){if(state.armRendering==='connected'){drawConnectedForearm(g,id,state.rig.left,p.unit);drawConnectedForearm(g,id,state.rig.right,p.unit);}else{paintForearm(p,id,state.rig.left);paintForearm(p,id,state.rig.right);}}
  else{const arms=poseArms(state);arm(p,id,arms.left,state.pose,'left');arm(p,id,arms.right,state.pose,'right');}
  if(state.pose==='desk'){
   // A drooping shirt collar and a hand at the temple exaggerate exhaustion without changing identity.

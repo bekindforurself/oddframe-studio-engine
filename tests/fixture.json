@@ -1,0 +1,10 @@
+{
+  "schemaVersion":1,"status":"ready","id":"engine21-technical-fixture","title":"Technical test fixture only",
+  "compositionId":"Engine21TechnicalFixture","entryPoint":"engine/tests/browser-fixture.tsx",
+  "width":1080,"height":1920,"fps":30,"frames":30,
+  "scenes":[{"id":"a","start":0,"end":15},{"id":"b","start":15,"end":30}],
+  "audioSeed":21,
+  "audioCues":[{"id":"bed","frame":0,"durationFrames":30,"bus":"music","effect":"chord","notes":[48,55,62],"gain":0.01},{"id":"contact","frame":15,"durationFrames":3,"bus":"sfx","effect":"button","gain":0.1}],
+  "intentionalBlack":[],
+  "fingerprintInputs":["engine/tests/browser-fixture.tsx","engine/templates/film-starter/Composition.tsx","engine/v2_1/characters.tsx","engine/v2_1/timing.ts","engine/v2_1/cameras.ts","engine/v2_1/metrics.tsx","engine/v2_1/index.ts","engine/v2/cameras.tsx","engine/v2/Human.tsx","engine/v2/performance.ts","engine/characters/humanArt.ts","engine/characters/connectedArms.ts","engine/animation/GroundedLegs.tsx","engine/animation/connectedRig.ts","engine/production/render.mjs","engine/production/config.mjs","package-lock.json"]
+}

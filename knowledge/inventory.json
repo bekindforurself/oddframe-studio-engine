@@ -1,0 +1,10 @@
+{
+  "pathConvention": "Paths relative to production host; published engine contents live at root. Host film/public/out files are not bundled.",
+  "illustrations": ["engine/characters/humanArt.ts","engine/characters/connectedArms.ts"],
+  "rigs": ["engine/animation/connectedRig.ts","engine/animation/walk.ts","engine/animation/GroundedLegs.tsx","engine/v2/performance.ts"],
+  "cameras": ["engine/v2/cameras.tsx","src/oddframe/futurecity21/shots.ts"],
+  "environments": {"officeBeachExterior":"engine/environments","apartmentLobbyLiftPrehistoric":"src/oddframe/elevator-redesign04/World.tsx","approvedCity":"src/oddframe/futurecity21/City.tsx with polish:true","cityConfigurations":"src/oddframe/futurecity21/polish05.tsx","cityDocumentation":"src/oddframe/futurecity21/ENVIRONMENT-COMPONENTS.md"},
+  "assets": {"city":"public/oddframe-futurecity21/asset-manifest.json","cityLicensing":"public/oddframe-futurecity21/LICENSE-ASSETS.md","metalAndOrdinaryHDR":"public/oddframe-cinematic03/asset-manifest.json","architectureEvaluation":"public/oddframe-engine20/asset-manifest.json","rule":"Use original license/provenance records; external GLTF buffers/images need their own records"},
+  "tools": ["engine/production/config.mjs","engine/production/render.mjs","engine/production/audio.py","engine/production/audio_cli.py","engine/production/validate.py"],
+  "limitations": ["Frontal illustrated anatomy","No general collision solver","GroundedLegs calibrated for scale1 / 3.2-unit height","HDR reflections are not local scene mirrors","No temporal motion blur","City remains partly procedural"]
+}

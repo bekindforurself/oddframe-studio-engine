@@ -1,0 +1,13 @@
+{
+  "id":"film02-elevator", "title":"THE ELEVATOR THAT SKIPPED 100 YEARS", "status":"complete and validated",
+  "composition":"OddFrameFilm02Production", "source":"src/oddframe/film02-production",
+  "baseline":"Engine2.0 + Future City review05; unchanged by Engine2.1",
+  "frames":1470, "fps":30, "durationSeconds":49, "dimensions":[1080,1920], "actualDrawingBuffer":[1080,1920], "dpr":1,
+  "outputs":{"root":"out/oddframe-film02-production/final01","silent":"Film02-Clean-Silent-Master.mp4","withSound":"Film02-Final-With-SFX-And-Music.mp4","mix":"audio/Film02-SFX-And-Music.wav","stems":["audio/Film02-Music-Stem.wav","audio/Film02-SFX-Stem.wav"],"validation":"final-validation.json","hashes":"deliverable-sha256.json"},
+  "nativeRender":{"seconds":557.9587679,"effectiveFPS":2.63460328,"maxNodeRSSMiB":366.7734375,"rssExcludes":["Chromium","GPU"],"hardware":"i5-4310U / 7.94GiB / Intel HD"},
+  "audio":{"seed":21260208,"sampleRate":48000,"channels":2,"bits":24,"samples":2352000,"aacIntegratedLUFS":-26.96,"aacTruePeakDbTP":-6.99,"steps":43,"buttonPresses":5,"doorMoves":6,"buttonEncodedLagSamples":0,"source":"Original deterministic synthesis; no third-party recordings","narration":false,"humanListeningPerformed":false},
+  "validation":{"fullDecode":true,"videoEssenceIdenticalAcrossExports":true,"blackFrames":[1466,1467,1468,1469],"preservedPriorFiles":2887,"pictureChangesDuringFinalAudio":0},
+  "recovery":{"found":"Backup only; no active/completed native render or final audio","action":"Reused backup/source, rendered once, synthesized missing audio, stream-copy muxed, verified"},
+  "ending":"Readable STONE AGE, partial prehistoric opening, abrupt black; no return-trip ending",
+  "sourceTools":["scripts/film02-render.mjs","scripts/film02-audio-timing.cjs","scripts/film02-final-audio.py","scripts/film02-final-validate.py"]
+}
