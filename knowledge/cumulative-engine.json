@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Extend existing production memory; evidence does not imply unrestricted visual approval",
+  "registry": "../capabilities/registry.json",
+  "defaultProfile": "illustrated-vertical-lowpower",
+  "existingEvidence": [
+    "film01.json",
+    "film02.json",
+    "release-2.1.json",
+    "lessons.md",
+    "film03-inheritance.json"
+  ],
+  "successes": [
+    {
+      "id": "film01-extraction",
+      "capabilities": [
+        "character.artwork",
+        "animation.locomotion"
+      ],
+      "evidence": "../PROVENANCE.md",
+      "limitation": "Graphical sleeping/rising, frontal identity and fixed calibration"
+    },
+    {
+      "id": "film02-reuse",
+      "capabilities": [
+        "camera.cinematic",
+        "animation.locomotion",
+        "production.audio"
+      ],
+      "evidence": "film02.json",
+      "limitation": "Original film evidence is not automatic pixel-parity approval of every extracted wrapper"
+    },
+    {
+      "id": "film03-technical-inheritance",
+      "capabilities": [
+        "animation.surface-contact",
+        "camera.prop-editorial",
+        "production.audio-retiming"
+      ],
+      "evidence": "film03-inheritance.json",
+      "limitation": "Technical motion/silhouette, editorial guards and audio retiming only. Film03 imports and profile remain frozen; no general collision solver or scene deletion API."
+    }
+  ],
+  "failures": [
+    {
+      "id": "passive-probe-positive-priority",
+      "evidence": "release-2.1.json",
+      "cause": "Positive useFrame priority disabled automatic drawing",
+      "resolution": "Use priority zero and decode actual frames before accepting output reuse"
+    },
+    {
+      "id": "film03-projection-only-contact",
+      "evidence": "film03-inheritance.json",
+      "cause": "Zero screen-space fingertip error did not prove full hand silhouette or desk/cap clearance",
+      "resolution": "Measure the actual outline and drive horizontal cap and hand from the same press state; keep the film-specific insert local"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "animation.projected-contact",
+      "status": "candidate",
+      "implementation": "src/oddframe/film02-production/timeline.ts#contactArm",
+      "requiredWork": "Extract camera projection helper with degenerate-ray guards and actual contact checks; no shared approval yet"
+    },
+    {
+      "id": "animation.running-preset",
+      "status": "candidate",
+      "implementation": "src/oddframe/film02-production/timeline.ts",
+      "requiredWork": "Parameterize local run amplitude and lean; verify grounding and transitions"
+    },
+    {
+      "id": "environment.city-review05",
+      "status": "host-reusable",
+      "implementation": "src/oddframe/futurecity21/City.tsx with polish:true",
+      "requiredWork": "Reuse existing host component; engine-only distribution needs separate asset-aware extraction"
+    },
+    {
+      "id": "animation.full-surface-hand-insert",
+      "status": "candidate",
+      "implementation": "src/oddframe/film03-production/ContactHand.tsx",
+      "requiredWork": "Parameterize renderer/artwork/orientation; validate new cameras/materials with separately authorized visual fixtures before a general shared component."
+    },
+    {
+      "id": "environment.grouped-removal",
+      "status": "host-reusable-pattern",
+      "implementation": "src/oddframe/film03-production/Office.tsx",
+      "requiredWork": "Keep asset-specific tree selectors local. Unmount prop/light/shadow dependencies together; no certified general scene inspector."
+    }
+  ],
+  "recommendedUpgrades": [
+    "Projected-contact helper",
+    "Frame-authored prop attachments",
+    "Camera roll helper",
+    "Motion-event audio adapter without source-text extraction"
+  ],
+  "recordPolicy": "Append evidence-linked records; do not erase failures. Mark superseded records and preserve their IDs. New candidates cannot enter approved profiles without explicit scoped approval and regression evidence."
+}

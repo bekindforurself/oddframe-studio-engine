@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import {verifyFilm} from './capabilities.mjs';
 export function validateProduction(c) {
   if(c.schemaVersion!==1||c.status!=='ready'||!c.id||!c.compositionId||!c.title) throw Error('Configure a ready film with metadata first');
   if(c.width!==1080||c.height!==1920||c.fps!==30||!Number.isInteger(c.frames)||c.frames<=0) throw Error('Expected native 1080x1920, 30 FPS and positive integer frames');
@@ -16,7 +17,7 @@ export function validateProduction(c) {
   for(const range of c.intentionalBlack??[])if(!Array.isArray(range)||range.length!==2||!range.every(Number.isInteger)||range[0]<0||range[1]<=range[0]||range[1]>c.frames)throw Error('Invalid black interval');
   return c;
 }
-export function readProduction(file){return validateProduction(JSON.parse(fs.readFileSync(file,'utf8')));}
+export function readProduction(file){const c=validateProduction(JSON.parse(fs.readFileSync(file,'utf8')));if(c.capabilities)verifyFilm(file);return c;}
 export function renderPlan(c,{final=false,approved=false,scene}={}){
   validateProduction(c);if(final&&!approved)throw Error('Native final requires explicit human approval, then --approved-final');
   const selected=scene?c.scenes.find(s=>s.id===scene):undefined;if(scene&&!selected)throw Error('Unknown scene '+scene);

@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "film": "Film03 - The Button That Deletes Things",
+  "status": "Complete and user approved; source preserved without migration",
+  "hostSource": "src/oddframe/film03-production",
+  "approvedProfile": "illustrated-vertical-lowpower@1.0.0",
+  "deliverable": {
+    "path": "out/oddframe-film03/Film03-Final.mp4",
+    "sha256": "dbe8493347af5335d05c5aab28c328f54a0eb9605590153e2535bf3092a42bfe",
+    "frames": 960,
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "sourceSha256": {
+    "src/oddframe/film03-production/capabilities.lock.json": "f4d3089c3a6b5ea85bca03fd3cf6de4640317460d2e3b7a47c61128feecfe996",
+    "src/oddframe/film03-production/capabilities.ts": "69129ccfe515ef0fee509e96b369fb7f3be1472019e22c94926b0d692769dc9d",
+    "src/oddframe/film03-production/ContactHand.tsx": "6dee1e7bf92754e6b7dc7a04d8cbe20404c41805c8a3a6f2ec1b08d35899b4ec",
+    "src/oddframe/film03-production/Film.tsx": "7677a4fc1c0a1699cd613bc5b406571fb37ceca0dc624ecdf4f8e7f7cb600a33",
+    "src/oddframe/film03-production/FilmFactory.tsx": "dbc9e452f05ca735250fb15b62fb6a5e5f76515aa5329da68eb6b089fd77e1f4",
+    "src/oddframe/film03-production/index.tsx": "d1cbca8a7be38eb6745cc6a30af640610098b41f86268b414ca304dd98c4da5c",
+    "src/oddframe/film03-production/Office.tsx": "f7001e95e6fdc22033bab99c4795ac4319e466628615babc7e5d749eab2bb46b",
+    "src/oddframe/film03-production/production.json": "bcb9ee20d0513b360a13cb94634c73006e55971f4c5cbb8260fcdcfe35627296",
+    "src/oddframe/film03-production/render.mjs": "fcbede3480daf9e42e59b9343bb48074cd0a1b2f5c7dacd7ed1ce16b57f25a35",
+    "src/oddframe/film03-production/retime_audio.py": "069ea4b71416dd068a8e6750a823c2ecb9188f0397afef271c8cf7c948db62c2",
+    "src/oddframe/film03-production/timeline.ts": "449d7db064df532dd804283871e519abd6bfbe9aa05be81d7e873a869cbfd5a0"
+  },
+  "productionEvidence": {
+    "actualSilhouetteContactChecks": [
+      {
+        "frame": 116,
+        "surfaceGap": 0.0020000000000000018,
+        "actualSilhouette": true,
+        "deskClearance": 0.06641263625911198
+      },
+      {
+        "frame": 266,
+        "surfaceGap": 0.0020000000000000018,
+        "actualSilhouette": true,
+        "deskClearance": 0.06641263625911198
+      },
+      {
+        "frame": 386,
+        "surfaceGap": 0.0020000000000000018,
+        "actualSilhouette": true,
+        "deskClearance": 0.06641263625911198
+      },
+      {
+        "frame": 446,
+        "surfaceGap": 0.0020000000000000018,
+        "actualSilhouette": true,
+        "deskClearance": 0.06641263625911198
+      },
+      {
+        "frame": 506,
+        "surfaceGap": 0.0020000000000000018,
+        "actualSilhouette": true,
+        "deskClearance": 0.06641263625911198
+      },
+      {
+        "frame": 590,
+        "surfaceGap": 0.0020000000000000018,
+        "actualSilhouette": true,
+        "deskClearance": 0.06641263625911198
+      },
+      {
+        "frame": 686,
+        "surfaceGap": 0.0020000000000000018,
+        "actualSilhouette": true,
+        "deskClearance": 0.06641263625911198
+      }
+    ],
+    "minimumDeskClearance": 0.06641263625911198,
+    "maximumPropNdc": 0.950956400554602,
+    "actualBuffer": [
+      1080,
+      1920
+    ],
+    "aacEventLagSamples": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "lufs": "-32.24",
+    "truePeakDbTP": "-7.10",
+    "fullDecode": true,
+    "visualInspection": "Reviewed native decoded hand contact and release, isolated before/after mug, paper stack, chair, lamp, ornament, desk and room shots, reactions, void and giant finger ending."
+  },
+  "scope": "User-authorized tested technical inheritance. No new visual certification, general hand IK, arbitrary collision solver or scene deletion API.",
+  "inherited": [
+    "animation.surface-contact@1.0.0",
+    "camera.prop-editorial@1.0.0",
+    "production.audio-retiming@1.0.0"
+  ],
+  "preservedPatterns": [
+    "Unmount the entire prop/dependent light/custom-shadow subtree at one global frame; retain live shadow-map refresh",
+    "Use existing makeShot/sampleShotSequence for purposeful dolly in/out; keep focus and timing local",
+    "Keep original music samples and change only explicit SFX event times; verify encoded AAC and narration headroom"
+  ],
+  "filmLocal": [
+    "Office element-tree selectors and coordinates",
+    "Native connected-arm artwork insert and its camera orientation",
+    "Story beats, props, melody, final giant finger and black void"
+  ],
+  "tests": [
+    "tests/film03-inheritance.test.cjs",
+    "tests/test_audio_retime.py",
+    "tests/capabilities.test.cjs",
+    "tests/production.test.cjs",
+    "tests/test_audio.py"
+  ],
+  "validation": {
+    "nodeTests": 20,
+    "audioTests": 8,
+    "typescript": "passed: engine/tsconfig.json",
+    "frozenFilm03Lock": "verified at 1.0.0",
+    "approvedBaselineRecords": "all original 11 unchanged",
+    "preservedBaselineFiles": 1973,
+    "archivedAssetHashes": 1720,
+    "film02ManifestFiles": 16,
+    "rendering": "none; no videos generated or modified"
+  }
+}

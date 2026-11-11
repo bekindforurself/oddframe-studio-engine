@@ -1,12 +1,20 @@
 # Unconfigured film starter (no Film 03 created)
 
-Copy this folder only when a new story is authorized. Supply your own identity,
+For a new authorized story, copy only production.json to a new film directory.
+Run `node engine/production/capabilities.mjs init --config=path/production.json`
+from the project root. This generates capabilities.lock.json, capabilities.ts and
+FilmFactory.tsx without overwriting files. Merge the printed capability fingerprint
+inputs with your film inputs, then run the capabilities CLI verify command.
+Use generated FilmFactory.tsx, not a relocated copy of Composition.tsx.
+See engine/capabilities/WORKFLOW.md for the required lock and promotion policy.
+
+The original Composition.tsx remains a backwards-compatible factory source. Supply your own identity,
 title, scene intervals, references and event definitions. `status: draft`, empty
 scenes and zero frames deliberately prevent rendering. No plot or cast is chosen.
 
 `createFilmComponent` accepts a timeline and scene-renderer registry. Register the
 returned component in the consuming project's Remotion Root only after configuring
-it. If moving Composition.tsx, update its import of the engine timing module.
+it. The initializer adapts its timing/metrics imports to the locked browser bindings.
 Pass **global frame** to characters, moving assets, cameras and effects; localFrame
 is available for deliberate scene-local choreography. Supply scene renderers that
 reuse engine/v2_1 or existing approved environments. Scene reference IDs are resolved

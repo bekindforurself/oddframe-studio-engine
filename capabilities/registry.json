@@ -1,0 +1,737 @@
+{
+  "schemaVersion": 1,
+  "capabilities": [
+    {
+      "id": "character.artwork",
+      "version": "2.1.0",
+      "status": "approved",
+      "runtime": "browser",
+      "scope": "shared-engine",
+      "files": [
+        "characters/Human.tsx",
+        "characters/humanArt.ts",
+        "characters/expressions.ts"
+      ],
+      "exports": [
+        {
+          "file": "characters/Human.tsx",
+          "names": [
+            "Human"
+          ],
+          "types": [
+            "ActorProps"
+          ]
+        },
+        {
+          "file": "characters/expressions.ts",
+          "names": [
+            "HUMAN_EXPRESSIONS",
+            "RIG_POSES"
+          ],
+          "types": []
+        }
+      ],
+      "requires": {},
+      "packages": {
+        "react": "^18.3.1",
+        "three": "^0.170.0",
+        "@react-three/fiber": "^8.17.0",
+        "remotion": "^4.0.0"
+      },
+      "constraints": [
+        "Two existing illustrated 2D identities, frontal anatomy; no full rear rig or lip-sync"
+      ],
+      "origin": "Film01 / extracted illustrated identities",
+      "tests": [],
+      "evidence": [
+        "knowledge/release-2.1.json",
+        "knowledge/film01.json"
+      ],
+      "validationLevel": "existing-production-and-release-evidence",
+      "approval": {
+        "reference": "User authorization: implement approved cumulative-engine Phases 1 and 2 using existing Engine 2.1 capabilities",
+        "scope": "Reuse existing baseline within documented constraints; no new artistic or experimental capability approval"
+      },
+      "implementationSha256": {
+        "characters/Human.tsx": "9966ad48b9785bcdcdb88f1e683d2303589b35bc3b01bdac6973c8ed8ed397ca",
+        "characters/connectedArms.ts": "afdfb547662348daa733df51c4bc06b2c83a2a6757c5967eccfdc400959b7570",
+        "characters/expressions.ts": "601982b7691b653e6bce74878f9b720aa61694e74af9559259a6587f082f655b",
+        "characters/humanArt.ts": "f9265a5a1992db56b9ae27d3010facd02bf16ef999e600e80322c90ede593ee2",
+        "characters/performanceTypes.ts": "8d78be3e507f6780860fb96f58d805d7c424560b7dd38dc8e7ffa37e36c035fb",
+        "math.ts": "8b2e1230d4970b2c321ddcf72933bdcef0818d9a4e0e0006bfb4e1e78fa3406c"
+      }
+    },
+    {
+      "id": "animation.connected-arms",
+      "version": "2.1.0",
+      "status": "approved",
+      "runtime": "browser",
+      "scope": "shared-engine",
+      "files": [
+        "animation/connectedRig.ts"
+      ],
+      "exports": [
+        {
+          "file": "animation/connectedRig.ts",
+          "names": [
+            "buildConnectedHumanRig",
+            "solveConnectedArm",
+            "ARM_LENGTHS"
+          ],
+          "types": []
+        }
+      ],
+      "requires": {
+        "character.artwork": "^2.1.0"
+      },
+      "packages": {
+        "react": "^18.3.1",
+        "three": "^0.170.0",
+        "@react-three/fiber": "^8.17.0",
+        "remotion": "^4.0.0"
+      },
+      "constraints": [
+        "Fixed artwork-space lengths 146/142; targets are wrist anchors"
+      ],
+      "origin": "Film02 / Engine2.1",
+      "tests": [],
+      "evidence": [
+        "knowledge/release-2.1.json",
+        "knowledge/film02.json"
+      ],
+      "validationLevel": "existing-production-and-release-evidence",
+      "approval": {
+        "reference": "User authorization: implement approved cumulative-engine Phases 1 and 2 using existing Engine 2.1 capabilities",
+        "scope": "Reuse existing baseline within documented constraints; no new artistic or experimental capability approval"
+      },
+      "implementationSha256": {
+        "animation/connectedRig.ts": "e4fd314e495b3910ba9b0304a48aae5a86a22ca852fcbc91e8f33750b7c9f8d1",
+        "characters/Human.tsx": "9966ad48b9785bcdcdb88f1e683d2303589b35bc3b01bdac6973c8ed8ed397ca",
+        "characters/connectedArms.ts": "afdfb547662348daa733df51c4bc06b2c83a2a6757c5967eccfdc400959b7570",
+        "characters/humanArt.ts": "f9265a5a1992db56b9ae27d3010facd02bf16ef999e600e80322c90ede593ee2",
+        "characters/performanceTypes.ts": "8d78be3e507f6780860fb96f58d805d7c424560b7dd38dc8e7ffa37e36c035fb",
+        "math.ts": "8b2e1230d4970b2c321ddcf72933bdcef0818d9a4e0e0006bfb4e1e78fa3406c"
+      }
+    },
+    {
+      "id": "animation.locomotion",
+      "version": "2.1.0",
+      "status": "approved",
+      "runtime": "browser",
+      "scope": "shared-engine",
+      "files": [
+        "v2/performance.ts",
+        "animation/GroundedLegs.tsx"
+      ],
+      "exports": [
+        {
+          "file": "v2/performance.ts",
+          "names": [
+            "sampleLocomotion",
+            "cinematicPerformance"
+          ],
+          "types": [
+            "LocomotionPath"
+          ]
+        },
+        {
+          "file": "animation/GroundedLegs.tsx",
+          "names": [
+            "GroundedLegs"
+          ],
+          "types": []
+        }
+      ],
+      "requires": {
+        "animation.connected-arms": "^2.1.0"
+      },
+      "packages": {
+        "react": "^18.3.1",
+        "three": "^0.170.0",
+        "@react-three/fiber": "^8.17.0",
+        "remotion": "^4.0.0"
+      },
+      "constraints": [
+        "GroundedLegs assumes scale 1 and established 3.2-unit artwork; running remains simplified"
+      ],
+      "origin": "Film02 / Engine2.1",
+      "tests": [],
+      "evidence": [
+        "knowledge/release-2.1.json",
+        "knowledge/film02.json"
+      ],
+      "validationLevel": "existing-production-and-release-evidence",
+      "approval": {
+        "reference": "User authorization: implement approved cumulative-engine Phases 1 and 2 using existing Engine 2.1 capabilities",
+        "scope": "Reuse existing baseline within documented constraints; no new artistic or experimental capability approval"
+      },
+      "implementationSha256": {
+        "animation/GroundedLegs.tsx": "7b84f981be23b71637942a0d0b4383bf1279fb4802e52bf039df48afedd9df7a",
+        "animation/connectedRig.ts": "e4fd314e495b3910ba9b0304a48aae5a86a22ca852fcbc91e8f33750b7c9f8d1",
+        "characters/Human.tsx": "9966ad48b9785bcdcdb88f1e683d2303589b35bc3b01bdac6973c8ed8ed397ca",
+        "characters/connectedArms.ts": "afdfb547662348daa733df51c4bc06b2c83a2a6757c5967eccfdc400959b7570",
+        "characters/humanArt.ts": "f9265a5a1992db56b9ae27d3010facd02bf16ef999e600e80322c90ede593ee2",
+        "characters/performanceTypes.ts": "8d78be3e507f6780860fb96f58d805d7c424560b7dd38dc8e7ffa37e36c035fb",
+        "math.ts": "8b2e1230d4970b2c321ddcf72933bdcef0818d9a4e0e0006bfb4e1e78fa3406c",
+        "v2/performance.ts": "1633ff353a78da1bbfa9403b36fb59875523bbaddd5df995a18acf302b67c69e"
+      }
+    },
+    {
+      "id": "character.integration",
+      "version": "2.1.0",
+      "status": "approved",
+      "runtime": "browser",
+      "scope": "shared-engine",
+      "files": [
+        "v2_1/characters.tsx"
+      ],
+      "exports": [
+        {
+          "file": "v2_1/characters.tsx",
+          "names": [
+            "IllustratedActor",
+            "CHARACTER_INTEGRATION"
+          ],
+          "types": []
+        }
+      ],
+      "requires": {
+        "animation.locomotion": "^2.1.0"
+      },
+      "packages": {
+        "react": "^18.3.1",
+        "three": "^0.170.0",
+        "@react-three/fiber": "^8.17.0",
+        "remotion": "^4.0.0"
+      },
+      "constraints": [
+        "Standing native legs; walking legs behind shirt; contact shadow is a card, not physical ground lighting"
+      ],
+      "origin": "Film02 / Engine2.1",
+      "tests": [],
+      "evidence": [
+        "knowledge/release-2.1.json",
+        "knowledge/film02.json"
+      ],
+      "validationLevel": "shared-wrapper-release-evidence; Film02 technique origin; not pixel-parity certification",
+      "approval": {
+        "reference": "User authorization: implement approved cumulative-engine Phases 1 and 2 using existing Engine 2.1 capabilities",
+        "scope": "Reuse existing baseline within documented constraints; no new artistic or experimental capability approval"
+      },
+      "implementationSha256": {
+        "animation/GroundedLegs.tsx": "7b84f981be23b71637942a0d0b4383bf1279fb4802e52bf039df48afedd9df7a",
+        "animation/connectedRig.ts": "e4fd314e495b3910ba9b0304a48aae5a86a22ca852fcbc91e8f33750b7c9f8d1",
+        "characters/Human.tsx": "9966ad48b9785bcdcdb88f1e683d2303589b35bc3b01bdac6973c8ed8ed397ca",
+        "characters/connectedArms.ts": "afdfb547662348daa733df51c4bc06b2c83a2a6757c5967eccfdc400959b7570",
+        "characters/humanArt.ts": "f9265a5a1992db56b9ae27d3010facd02bf16ef999e600e80322c90ede593ee2",
+        "characters/performanceTypes.ts": "8d78be3e507f6780860fb96f58d805d7c424560b7dd38dc8e7ffa37e36c035fb",
+        "math.ts": "8b2e1230d4970b2c321ddcf72933bdcef0818d9a4e0e0006bfb4e1e78fa3406c",
+        "v2/Human.tsx": "a6c267dac4aaae4fd084e4893618470e51893d9828ad5a7de52ba50f96686a04",
+        "v2/performance.ts": "1633ff353a78da1bbfa9403b36fb59875523bbaddd5df995a18acf302b67c69e",
+        "v2_1/characters.tsx": "27fdd5d91eefd35c994027fa74f07fdc8cfc6c501b9c98ccad7697a4a300bba2"
+      }
+    },
+    {
+      "id": "camera.cinematic",
+      "version": "2.1.0",
+      "status": "approved",
+      "runtime": "browser",
+      "scope": "shared-engine",
+      "files": [
+        "v2_1/cameras.ts",
+        "cameras/CameraRig.tsx"
+      ],
+      "exports": [
+        {
+          "file": "v2_1/cameras.ts",
+          "names": [
+            "makeShot",
+            "sampleShot",
+            "sampleShotSequence",
+            "overShoulder",
+            "validateShot",
+            "smoothSpeedRamp"
+          ],
+          "types": [
+            "ProductionShot",
+            "CinematicShot",
+            "ShotKind",
+            "Obstacle"
+          ]
+        },
+        {
+          "file": "cameras/CameraRig.tsx",
+          "names": [
+            "CameraRig"
+          ],
+          "types": [
+            "CameraState"
+          ]
+        }
+      ],
+      "requires": {},
+      "packages": {
+        "react": "^18.3.1",
+        "three": "^0.170.0",
+        "@react-three/fiber": "^8.17.0",
+        "remotion": "^4.0.0"
+      },
+      "constraints": [
+        "New sequence intervals are half-open; legacy v2 sampling unchanged",
+        "validateShot checks authored paths; it does not navigate. Validate blended paths separately"
+      ],
+      "origin": "Film02 / Engine2.1",
+      "tests": [
+        "tests/production.test.cjs"
+      ],
+      "evidence": [
+        "knowledge/release-2.1.json",
+        "knowledge/film02.json"
+      ],
+      "validationLevel": "existing-production-and-release-evidence",
+      "approval": {
+        "reference": "User authorization: implement approved cumulative-engine Phases 1 and 2 using existing Engine 2.1 capabilities",
+        "scope": "Reuse existing baseline within documented constraints; no new artistic or experimental capability approval"
+      },
+      "implementationSha256": {
+        "cameras/CameraRig.tsx": "3c1218983d57a1812a2dc84867124725b33a6632d0021bfedcc9495d82e9f2d4",
+        "math.ts": "8b2e1230d4970b2c321ddcf72933bdcef0818d9a4e0e0006bfb4e1e78fa3406c",
+        "v2/cameras.tsx": "c69151bc74f3cc8ceeab02810213306d9d9f5103f854ec002a3f2aeac2b15ac9",
+        "v2_1/cameras.ts": "1651ca229da129f56637316cbe112c59a57271dac06795195956cc23af892772"
+      }
+    },
+    {
+      "id": "lighting.atmosphere",
+      "version": "2.1.0",
+      "status": "approved",
+      "runtime": "browser",
+      "scope": "shared-engine",
+      "files": [
+        "v2_1/atmosphere.tsx",
+        "v2/lighting.tsx"
+      ],
+      "exports": [
+        {
+          "file": "v2_1/atmosphere.tsx",
+          "names": [
+            "ProductionAtmosphere",
+            "ATMOSPHERE_PRESETS"
+          ],
+          "types": []
+        },
+        {
+          "file": "v2/lighting.tsx",
+          "names": [
+            "CinematicLightRig"
+          ],
+          "types": []
+        }
+      ],
+      "requires": {},
+      "packages": {
+        "react": "^18.3.1",
+        "three": "^0.170.0",
+        "@react-three/fiber": "^8.17.0",
+        "remotion": "^4.0.0"
+      },
+      "constraints": [
+        "Keep HDR readiness barriers; limited real shadows; no volumetric or temporal effects"
+      ],
+      "origin": "Film02 / Engine2.1",
+      "tests": [],
+      "evidence": [
+        "knowledge/release-2.1.json",
+        "knowledge/film02.json"
+      ],
+      "validationLevel": "existing-production-and-release-evidence",
+      "approval": {
+        "reference": "User authorization: implement approved cumulative-engine Phases 1 and 2 using existing Engine 2.1 capabilities",
+        "scope": "Reuse existing baseline within documented constraints; no new artistic or experimental capability approval"
+      },
+      "implementationSha256": {
+        "v2/lighting.tsx": "98558a938c767dd6b62dfc61cb9eb256cb700a1329669d9073807aa73bbe10df",
+        "v2_1/atmosphere.tsx": "d649249948604a9a86864bf41e8c940160b00040ad4960f9a3804a8c6d6644b9"
+      }
+    },
+    {
+      "id": "assets.licensed",
+      "version": "2.1.0",
+      "status": "approved",
+      "runtime": "browser",
+      "scope": "shared-engine",
+      "files": [
+        "v2/assets.tsx"
+      ],
+      "exports": [
+        {
+          "file": "v2/assets.tsx",
+          "names": [
+            "loadLicensedModel",
+            "loadTexture",
+            "Model",
+            "ModelInstances",
+            "configureMaterial",
+            "assetCacheStats"
+          ],
+          "types": [
+            "AssetRecord"
+          ]
+        }
+      ],
+      "requires": {},
+      "packages": {
+        "react": "^18.3.1",
+        "three": "^0.170.0",
+        "@react-three/fiber": "^8.17.0",
+        "remotion": "^4.0.0"
+      },
+      "constraints": [
+        "Manifest licensing/hash/byte budgets required; external GLTF buffers need separate provenance",
+        "Instancing is for static meshes; film assets are not bundled into engine"
+      ],
+      "origin": "Film02 / Engine2.1",
+      "tests": [],
+      "evidence": [
+        "knowledge/release-2.1.json",
+        "knowledge/film02.json"
+      ],
+      "validationLevel": "existing-production-and-release-evidence",
+      "approval": {
+        "reference": "User authorization: implement approved cumulative-engine Phases 1 and 2 using existing Engine 2.1 capabilities",
+        "scope": "Reuse existing baseline within documented constraints; no new artistic or experimental capability approval"
+      },
+      "implementationSha256": {
+        "math.ts": "8b2e1230d4970b2c321ddcf72933bdcef0818d9a4e0e0006bfb4e1e78fa3406c",
+        "v2/assets.tsx": "ed9b9f047a89b7a1c8ca4c45888057787b890d4218a0304c5a8dd3567cd0c45e"
+      }
+    },
+    {
+      "id": "timeline.global",
+      "version": "2.1.0",
+      "status": "approved",
+      "runtime": "browser",
+      "scope": "shared-engine",
+      "files": [
+        "v2_1/timing.ts",
+        "math.ts"
+      ],
+      "exports": [
+        {
+          "file": "v2_1/timing.ts",
+          "names": [
+            "validateTimeline",
+            "sceneAt",
+            "remapFrame",
+            "frameToSample",
+            "activeCues"
+          ],
+          "types": [
+            "SceneInterval",
+            "FrameCue"
+          ]
+        },
+        {
+          "file": "math.ts",
+          "names": [
+            "ease",
+            "mix",
+            "mix3",
+            "clamp"
+          ],
+          "types": [
+            "V3"
+          ]
+        }
+      ],
+      "requires": {},
+      "packages": {
+        "react": "^18.3.1",
+        "three": "^0.170.0",
+        "@react-three/fiber": "^8.17.0",
+        "remotion": "^4.0.0"
+      },
+      "constraints": [
+        "Integer half-open intervals and requested global frames"
+      ],
+      "origin": "Film02 / Engine2.1",
+      "tests": [
+        "tests/production.test.cjs"
+      ],
+      "evidence": [
+        "knowledge/release-2.1.json",
+        "knowledge/film02.json"
+      ],
+      "validationLevel": "existing-production-and-release-evidence",
+      "approval": {
+        "reference": "User authorization: implement approved cumulative-engine Phases 1 and 2 using existing Engine 2.1 capabilities",
+        "scope": "Reuse existing baseline within documented constraints; no new artistic or experimental capability approval"
+      },
+      "implementationSha256": {
+        "math.ts": "8b2e1230d4970b2c321ddcf72933bdcef0818d9a4e0e0006bfb4e1e78fa3406c",
+        "v2_1/timing.ts": "196458523f5d82d57804a9ae99cafe2eba80155f6c771c0fb0b0c1780ae5df2e"
+      }
+    },
+    {
+      "id": "render.buffer-probe",
+      "version": "2.1.0",
+      "status": "approved",
+      "runtime": "browser",
+      "scope": "shared-engine",
+      "files": [
+        "v2_1/metrics.tsx"
+      ],
+      "exports": [
+        {
+          "file": "v2_1/metrics.tsx",
+          "names": [
+            "DrawingBufferProbe"
+          ],
+          "types": []
+        }
+      ],
+      "requires": {},
+      "packages": {
+        "react": "^18.3.1",
+        "three": "^0.170.0",
+        "@react-three/fiber": "^8.17.0",
+        "remotion": "^4.0.0"
+      },
+      "constraints": [
+        "Passive R3F observer priority zero; output size alone is insufficient"
+      ],
+      "origin": "Film02 / Engine2.1",
+      "tests": [
+        "tests/browser-fixture.tsx"
+      ],
+      "evidence": [
+        "knowledge/release-2.1.json",
+        "knowledge/film02.json"
+      ],
+      "validationLevel": "existing-production-and-release-evidence",
+      "approval": {
+        "reference": "User authorization: implement approved cumulative-engine Phases 1 and 2 using existing Engine 2.1 capabilities",
+        "scope": "Reuse existing baseline within documented constraints; no new artistic or experimental capability approval"
+      },
+      "implementationSha256": {
+        "v2_1/metrics.tsx": "f3a1b22623c2493e7f8c578fb647832a39d6800ee77e1dab7d7cfa3598e65896"
+      }
+    },
+    {
+      "id": "production.render",
+      "version": "2.1.0",
+      "status": "approved",
+      "runtime": "node",
+      "scope": "shared-engine",
+      "files": [
+        "production/render.mjs",
+        "production/config.mjs",
+        "production/validate.py",
+        "production/audio.py",
+        "rendering/browser.mjs"
+      ],
+      "exports": [],
+      "requires": {
+        "timeline.global": "^2.1.0",
+        "render.buffer-probe": "^2.1.0"
+      },
+      "packages": {
+        "@remotion/cli": "^4.0.0",
+        "typescript": "^5.6.0"
+      },
+      "constraints": [
+        "One worker; native final needs full-preview human approval",
+        "Python/Pillow/NumPy and installed FFmpeg/browser remain external environment requirements"
+      ],
+      "origin": "Film02 / Engine2.1",
+      "tests": [
+        "tests/production.test.cjs"
+      ],
+      "evidence": [
+        "knowledge/release-2.1.json",
+        "knowledge/film02.json"
+      ],
+      "validationLevel": "existing-production-and-release-evidence",
+      "approval": {
+        "reference": "User authorization: implement approved cumulative-engine Phases 1 and 2 using existing Engine 2.1 capabilities",
+        "scope": "Reuse existing baseline within documented constraints; no new artistic or experimental capability approval"
+      },
+      "implementationSha256": {
+        "production/audio.py": "06b5e6d7ca0bdfadcb1227c5d1e33f0d2a57495137a2a6aed1a333c1953bd6d5",
+        "production/capabilities.mjs": "386f3b78496331f8db350dc6bd6c21689b540db99bf0e5607f61d43be086c80f",
+        "production/config.mjs": "7d816058ec8e592506fb1ae9beea05133d303ab3f52f6f0d20a1b02a4b22730e",
+        "production/render.mjs": "f6bcee04f0c23a16329b4654cfc26ac7cef49a7b9e801b24642f6cd7819880e7",
+        "production/validate.py": "e69c3734285206c92827f04d3fc2fd40c1ccdee10894a9b86367a4478c0295c7",
+        "rendering/browser.mjs": "609f3cf18e3acb78af88264b8aeb6c48dd099f45b73f620a83d3d36d167b7fa2"
+      }
+    },
+    {
+      "id": "production.audio",
+      "version": "2.1.0",
+      "status": "approved",
+      "runtime": "python",
+      "scope": "shared-engine",
+      "files": [
+        "production/audio.py",
+        "production/audio_cli.py",
+        "production/mux.py"
+      ],
+      "exports": [],
+      "requires": {
+        "timeline.global": "^2.1.0"
+      },
+      "packages": {},
+      "constraints": [
+        "Seeded instrumental music/SFX only; user supplies external English narrator",
+        "48kHz stereo PCM24 stems; measure encoded AAC; narrator mixing is not automated"
+      ],
+      "origin": "Film02 / Engine2.1",
+      "tests": [
+        "tests/test_audio.py"
+      ],
+      "evidence": [
+        "knowledge/release-2.1.json",
+        "knowledge/film02.json"
+      ],
+      "validationLevel": "existing-production-and-release-evidence",
+      "approval": {
+        "reference": "User authorization: implement approved cumulative-engine Phases 1 and 2 using existing Engine 2.1 capabilities",
+        "scope": "Reuse existing baseline within documented constraints; no new artistic or experimental capability approval"
+      },
+      "implementationSha256": {
+        "production/audio.py": "06b5e6d7ca0bdfadcb1227c5d1e33f0d2a57495137a2a6aed1a333c1953bd6d5",
+        "production/audio_cli.py": "1cfc7490d15a1bf85ef046d389fff2982bc4aa6612e5de9a644cd2ac982244d2",
+        "production/mux.py": "f052360e314dfbd603af8c874cc45fad5c38d4deae2620fabe70b828df0ad841"
+      }
+    },
+    {
+      "id": "animation.surface-contact",
+      "runtime": "browser",
+      "files": [
+        "v2_1/contact-v1.ts"
+      ],
+      "exports": [
+        {
+          "file": "v2_1/contact-v1.ts",
+          "names": [
+            "sampleSurfacePress",
+            "lowestOpaquePoint",
+            "alignContactPlane"
+          ],
+          "types": [
+            "SurfacePressSpec",
+            "SurfacePressState",
+            "PixelTip"
+          ]
+        }
+      ],
+      "requires": {},
+      "packages": {},
+      "constraints": [
+        "Horizontal surface and upright XY artwork inserts only; authored positive clearances",
+        "Measured bitmap outline, not fingertip-center projection; no general 3D IK/collision guarantee"
+      ],
+      "tests": [
+        "tests/film03-inheritance.test.cjs"
+      ],
+      "version": "1.0.0",
+      "status": "approved",
+      "scope": "shared-engine-technical-helpers",
+      "origin": "Film03 approved refinement; additive extraction without migrating the approved film",
+      "evidence": [
+        "knowledge/film03-inheritance.json"
+      ],
+      "validationLevel": "Deterministic helper/parity tests; existing Film03 production evidence. No unrendered visual-wrapper certification.",
+      "approval": {
+        "reference": "User: Safe Film03 Capability Preservation - integrate only tested reusable improvements; local commit only",
+        "scope": "Technical helpers within listed constraints. Preserve all film locks and existing implementations."
+      },
+      "implementationSha256": {
+        "math.ts": "8b2e1230d4970b2c321ddcf72933bdcef0818d9a4e0e0006bfb4e1e78fa3406c",
+        "v2_1/contact-v1.ts": "d903c952742e05d60f248477617b8f0e3c896aa6bbf90e0694812693cbc8352c"
+      }
+    },
+    {
+      "id": "camera.prop-editorial",
+      "runtime": "browser",
+      "files": [
+        "v2_1/editorial-v1.ts"
+      ],
+      "exports": [
+        {
+          "file": "v2_1/editorial-v1.ts",
+          "names": [
+            "validateDeletionBeat",
+            "propFraming"
+          ],
+          "types": [
+            "DeletionBeat"
+          ]
+        }
+      ],
+      "requires": {
+        "camera.cinematic": "^2.1.0"
+      },
+      "packages": {
+        "three": "^0.170.0"
+      },
+      "constraints": [
+        "Technical timing and AABB viewport/depth guards; not artistic approval or occlusion/collision detection",
+        "Use existing camera paths; story timing, DOF, object removal and reaction performance remain film-local"
+      ],
+      "tests": [
+        "tests/film03-inheritance.test.cjs"
+      ],
+      "version": "1.0.0",
+      "status": "approved",
+      "scope": "shared-engine-technical-helpers",
+      "origin": "Film03 approved refinement; additive extraction without migrating the approved film",
+      "evidence": [
+        "knowledge/film03-inheritance.json"
+      ],
+      "validationLevel": "Deterministic helper/parity tests; existing Film03 production evidence. No unrendered visual-wrapper certification.",
+      "approval": {
+        "reference": "User: Safe Film03 Capability Preservation - integrate only tested reusable improvements; local commit only",
+        "scope": "Technical helpers within listed constraints. Preserve all film locks and existing implementations."
+      },
+      "implementationSha256": {
+        "cameras/CameraRig.tsx": "3c1218983d57a1812a2dc84867124725b33a6632d0021bfedcc9495d82e9f2d4",
+        "math.ts": "8b2e1230d4970b2c321ddcf72933bdcef0818d9a4e0e0006bfb4e1e78fa3406c",
+        "v2_1/editorial-v1.ts": "fd31012f2b6e10c1e34dbc23b950b71f4912fc9ea530207338dfab9bc2f94042"
+      }
+    },
+    {
+      "id": "production.audio-retiming",
+      "runtime": "python",
+      "files": [
+        "production/audio_retime.py"
+      ],
+      "exports": [],
+      "requires": {
+        "production.audio": "^2.1.0"
+      },
+      "packages": {},
+      "constraints": [
+        "Only explicit SFX cue IDs may move; music samples retained and inputs unmodified",
+        "Stereo finite unclipped buses required; measure LUFS/true peak and encoded AAC separately; no voice or synthesis added"
+      ],
+      "tests": [
+        "tests/test_audio_retime.py"
+      ],
+      "version": "1.0.0",
+      "status": "approved",
+      "scope": "shared-engine-technical-helpers",
+      "origin": "Film03 approved refinement; additive extraction without migrating the approved film",
+      "evidence": [
+        "knowledge/film03-inheritance.json"
+      ],
+      "validationLevel": "Deterministic helper/parity tests; existing Film03 production evidence. No unrendered visual-wrapper certification.",
+      "approval": {
+        "reference": "User: Safe Film03 Capability Preservation - integrate only tested reusable improvements; local commit only",
+        "scope": "Technical helpers within listed constraints. Preserve all film locks and existing implementations."
+      },
+      "implementationSha256": {
+        "production/audio_retime.py": "b0abbca287d6661f188ab4164088305fff4c7ec5d284d6c83f0f89ecd3fbbf91"
+      }
+    }
+  ]
+}

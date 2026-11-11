@@ -1,8 +1,32 @@
 {
   "engineVersion": "2.1.0",
   "purpose": "Read targeted memory before repeating repository-wide analysis",
-  "records": {"inventory":"inventory.json","film01":"film01.json","film02":"film02.json","lessons":"lessons.md","publishing":"PUBLISHING.md","release":"release-2.1.json"},
-  "hostGuidance": ["AGENTS.md","ARCHITECTURE.md","PRODUCTION_GUIDE.md"],
+  "records": {
+    "inventory": "inventory.json",
+    "film01": "film01.json",
+    "film02": "film02.json",
+    "lessons": "lessons.md",
+    "publishing": "PUBLISHING.md",
+    "release": "release-2.1.json",
+    "cumulative": "cumulative-engine.json",
+    "film03": "film03-inheritance.json",
+    "film03Publishing": "film03-publishing-assessment.md",
+    "engineExport": "film03-engine-export.json"
+  },
+  "hostGuidance": [
+    "AGENTS.md",
+    "PRODUCTION_21.md",
+    "capabilities/WORKFLOW.md"
+  ],
   "starter": "templates/film-starter/production.json",
-  "rules": {"identity":"2D illustrated people in 3D environments","voices":"User supplies external English narrator; no character voices/dialogue/lip-sync","hardware":"i5-4310U / 8GB / Intel HD","globalFrames":true,"concurrency":1,"newFilmRequiresStoryAuthorization":true}
+  "rules": {
+    "identity": "2D illustrated people in 3D environments",
+    "voices": "User supplies external English narrator; no character voices/dialogue/lip-sync",
+    "hardware": "i5-4310U / 8GB / Intel HD",
+    "globalFrames": true,
+    "concurrency": 1,
+    "newFilmRequiresStoryAuthorization": true
+  },
+  "capabilityRegistry": "capabilities/registry.json",
+  "capabilityWorkflow": "capabilities/WORKFLOW.md"
 }

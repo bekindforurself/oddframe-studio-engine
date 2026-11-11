@@ -1,0 +1,83 @@
+{
+  "sourceCommit": "e3f9e446e99d1aa13ed8fbea1b1ba42720d4025f",
+  "baseCommit": "db5ec269e46cbececc2f4843e7eb981dedfabba5",
+  "targetBranch": "engine-film03-capabilities",
+  "layout": "Engine contents at repository root; no production workspace history or film sources imported",
+  "copiedEngineFiles": [
+    ".gitattributes",
+    "capabilities/WORKFLOW.md",
+    "capabilities/registry.json",
+    "capabilities/profiles/illustrated-vertical-lowpower-v1.json",
+    "capabilities/profiles/illustrated-vertical-lowpower-v1_1.json",
+    "production/capabilities.mjs",
+    "production/config.mjs",
+    "production/audio_retime.py",
+    "tests/capabilities.test.cjs",
+    "tests/film03-inheritance.test.cjs",
+    "tests/test_audio_retime.py",
+    "v2_1/contact-v1.ts",
+    "v2_1/editorial-v1.ts",
+    "templates/film-starter/production.json",
+    "templates/film-starter/README.md",
+    "knowledge/index.json",
+    "knowledge/cumulative-engine.json",
+    "knowledge/film03-inheritance.json",
+    "knowledge/film03-publishing-assessment.md"
+  ],
+  "byteOnlyDependencyAlignment": [
+    "animation/GroundedLegs.tsx",
+    "characters/connectedArms.ts",
+    "characters/humanArt.ts",
+    "v2/cameras.tsx",
+    "v2/performance.ts"
+  ],
+  "byteAlignmentReason": "Identical code after CRLF/LF normalization; preserve exact approved source hashes without semantic runtime changes",
+  "adaptedFiles": [
+    "tests/capabilities.test.cjs",
+    "package.json",
+    "knowledge/index.json",
+    "knowledge/film03-publishing-assessment.md",
+    "README.md"
+  ],
+  "prerequisite": "Cumulative registry/resolver/profile and conditional config verification, absent from remote 2.1",
+  "validation": {
+    "status": "passed",
+    "focusedRegression": "1 passed; path derived from test engine root, package root detected for both layouts; independent output directory setup",
+    "typescript": "passed",
+    "registry": "14 approved capabilities; profiles 1.0.0 and 1.1.0 validated",
+    "inheritance": "starter profile 1.1.0, generated bindings/factory typecheck, lock and preflight verified",
+    "node": {
+      "passed": 19,
+      "failed": 0,
+      "skipped": 1
+    },
+    "audio": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 2
+    },
+    "expectedSkips": [
+      "Film03 host-only compatibility evidence",
+      "Film02 host-only audio extraction parity",
+      "Film03 host-only audio recipe evidence"
+    ],
+    "productionPreservation": "1765 protected snapshot hashes, original HEAD, branch and working-tree status unchanged; Film03 frozen lock verified"
+  },
+  "mediaGeneration": "none",
+  "previousValidation": {
+    "status": "FAILED: publication stopped as requested; no commit or push",
+    "typescript": "passed",
+    "registry": "passed: 14 capabilities, profiles 1.0.0 and 1.1.0",
+    "node": {
+      "passed": 18,
+      "failed": 1,
+      "skipped": 1,
+      "failure": "tests/capabilities.test.cjs still imports engine/production/config.mjs through a host-relative path; standalone file is production/config.mjs"
+    },
+    "audio": {
+      "passed": 6,
+      "skipped": 2
+    },
+    "productionPreservation": "1765 snapshot hashes, original HEAD, branch and working-tree status unchanged"
+  }
+}

@@ -22,6 +22,7 @@
   "description": "OddFrame reusable 2.5D cinematic source engine",
   "scripts": {
     "check": "tsc --noEmit",
-    "test": "node --test tests/production.test.cjs"
+    "test": "node --test tests/capabilities.test.cjs tests/production.test.cjs tests/film03-inheritance.test.cjs",
+    "test:audio": "python -B -m unittest discover -s tests -p \"test_audio*.py\""
   }
 }

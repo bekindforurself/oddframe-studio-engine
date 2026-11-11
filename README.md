@@ -28,3 +28,17 @@ engine/
 ```
 
 No new dependency, asset download or film registration is required. Validation is TypeScript only; the example has not been visually reviewed or rendered in this task.
+
+
+## Film03 technical capability inheritance
+
+The cumulative registry is available through `node production/capabilities.mjs catalog`.
+New film locks select `illustrated-vertical-lowpower@1.1.0`; existing 1.0.0 remains
+recoverable. Use generated `capabilities.ts` / `FilmFactory.tsx` as described in
+`capabilities/WORKFLOW.md`. This adds horizontal press/silhouette alignment helpers,
+prop framing/editorial guards and SFX retiming with retained music, not a general
+3D hand/collision solver. Films, story implementations and media are not bundled.
+
+Validation: `npm run check`, `npm test`, `npm run test:audio`. Existing installed
+dependencies may be supplied by a consuming host; no new dependency was added.
+See `knowledge/film03-engine-export.json` for source/base provenance and limits.

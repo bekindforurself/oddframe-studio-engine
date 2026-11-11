@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "illustrated-vertical-lowpower",
+  "version": "1.1.0",
+  "status": "approved",
+  "engine": "^2.1.0",
+  "approval": {
+    "reference": "User: Safe Film03 Capability Preservation - tested local technical inheritance",
+    "scope": "Three deterministic technical helpers only; no new artistic capability or film export approval. Existing frozen profiles/locks unchanged."
+  },
+  "capabilities": {
+    "character.artwork": "^2.1.0",
+    "animation.connected-arms": "^2.1.0",
+    "animation.locomotion": "^2.1.0",
+    "character.integration": "^2.1.0",
+    "camera.cinematic": "^2.1.0",
+    "lighting.atmosphere": "^2.1.0",
+    "assets.licensed": "^2.1.0",
+    "timeline.global": "^2.1.0",
+    "render.buffer-probe": "^2.1.0",
+    "production.render": "^2.1.0",
+    "production.audio": "^2.1.0",
+    "animation.surface-contact": "1.0.0",
+    "camera.prop-editorial": "1.0.0",
+    "production.audio-retiming": "1.0.0"
+  },
+  "constraints": [
+    "Expressive illustrated 2D people in 3D sets",
+    "1080x1920 at 30fps; 540x960 preview; one worker",
+    "No character voices/dialogue/lip-sync; external narrator only",
+    "Film03-derived helpers have scoped technical validation; no general 3D hand or scene collision certification"
+  ]
+}

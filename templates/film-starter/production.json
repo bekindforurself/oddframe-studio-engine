@@ -17,5 +17,9 @@
   "audioCues": [],
   "intentionalBlack": [],
   "inputProps": {},
-  "fingerprintInputs": []
+  "fingerprintInputs": [],
+  "capabilities": {
+    "required": true,
+    "profile": "illustrated-vertical-lowpower"
+  }
 }
